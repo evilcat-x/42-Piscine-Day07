@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 14:22:05 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 15:53:55 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 16:37:33 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ char	ft_convert_char(char c, char *from, char *to);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int		nbrlen;
 	char	*dst;
 	int		i;
 
 	i = 0;
-	nbrlen = ft_strlen(nbr);
-	dst = (char *)malloc(sizeof(char) * (nbrlen + 1));
+	dst = (char *)malloc(sizeof(char) * (ft_strlen(nbr) + 1));
 	if (!dst)
 		return ((void *)0);
 	while (nbr[i])

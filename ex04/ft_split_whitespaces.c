@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 18:35:50 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 13:41:21 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 16:36:01 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ char	**ft_split_whitespaces(char *str)
 {
 	char	**head;
 	char	*first;
-	int		ptr;
+	int		p;
 	int		i;
 
 	i = 0;
-	ptr = ft_word_cout(str);
-	first = (char *)malloc(sizeof(str) * (ptr + 1));
+	p = 0;
+	first = (char *)malloc(sizeof(str) * (ft_word_cout(str) + 1));
 	if (!first)
 		return (0);
 	head = &first;
@@ -31,11 +31,11 @@ char	**ft_split_whitespaces(char *str)
 	{
 		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
 			i++;
-		head[ptr++] = &str[i];
+		head[0][p++] = str[i];
 		while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
 			i++;
 	}
-	head[ptr] = 0;
+	head[0][p] = 0;
 	return (head);
 }
 

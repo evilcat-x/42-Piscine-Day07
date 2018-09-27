@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 15:41:28 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 15:55:03 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 16:38:54 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,22 @@ int		ft_split_count(char *str, char *separator);
 
 char	**ft_split(char *str, char *charset)
 {
-	int		split_count;
 	char	**head;
 	char	*first;
 	int		i;
 
-	split_count = ft_split_count(str, charset);
-	first = malloc(sizeof(head) + 1);
+	first = malloc(sizeof(first) * (ft_split_count(str, charset) + 1));
 	head = &first;
 	i = 0;
 	while (*str)
 	{
 		while (ft_is_separator(*str, charset))
 			str++;
-		head[i++] = str;
+		head[0][i++] = str;
 		while (*str && !ft_is_separator(*str, charset))
 			str++;
 	}
-	head[i] = 0;
+	head[0][i] = 0;
 	return (head);
 }
 

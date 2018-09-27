@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 18:21:22 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 16:07:37 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 16:19:05 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_concat_params(int argc, char **argv)
 			head[i_builder++] = *str++;
 		head[i_builder++] = '\n';
 	}
-	head[i_builder] = 0;
+	head[i_builder - 1] = 0;
 	return (head);
 }
 

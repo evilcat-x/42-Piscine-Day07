@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 14:22:05 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 15:41:18 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 15:53:55 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	if (!dst)
 		return ((void *)0);
 	while (nbr[i])
-		dst[i++] = ft_convert_char(nbr[i], base_from, base_to);
+	{
+		dst[i] = ft_convert_char(nbr[i], base_from, base_to);
+		i++;
+	}
 	dst[i] = 0;
 	return (dst);
 }

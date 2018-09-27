@@ -6,13 +6,13 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 18:16:05 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 15:30:21 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 16:06:54 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_range(int **range, int min, int max)
+int		ft_ultimate_range(int **range, int min, int max)
 {
 	int	i;
 

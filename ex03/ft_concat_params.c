@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 18:21:22 by seli              #+#    #+#             */
-/*   Updated: 2018/09/26 18:35:00 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 16:07:37 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_concat_params(int argc, char **argv)
 	while (i_argc < argc)
 		total += ft_strlen(argv[i_argc++]);
 	head = (char *)malloc(sizeof(char) * (total + i_argc));
-	i_argc = -1;
+	i_argc = 0;
 	i_builder = 0;
 	while (++i_argc < argc)
 	{

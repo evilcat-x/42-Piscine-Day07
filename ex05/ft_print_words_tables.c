@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
+/*   ft_print_words_tables.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/26 18:16:05 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 15:30:21 by seli             ###   ########.fr       */
+/*   Created: 2018/09/27 14:17:08 by seli              #+#    #+#             */
+/*   Updated: 2018/09/27 14:21:37 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
 
-int		ft_range(int **range, int min, int max)
+void	ft_print_words_tables(char **tab)
 {
-	int	i;
+	while (*tab)
+	{
+		ft_putstr(*tab++);
+		ft_putchar('\n');
+	}
+}
 
-	if (min >= max)
-	{
-		*range = 0;
-		return (0);
-	}
-	*range = (int *)malloc(sizeof(int) * (((long)max - (long)min)));
-	if (!*range)
-		return (0);
-	i = 0;
-	while (min + i <= max)
-	{
-		*range[i] = min + i;
-		i++;
-	}
-	return (i + 1);
+void	ft_putstr(char *str)
+{
+	while (*str)
+		ft_putchar(*str++);
 }

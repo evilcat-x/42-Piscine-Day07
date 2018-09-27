@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 17:26:26 by seli              #+#    #+#             */
-/*   Updated: 2018/09/26 18:16:49 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 15:29:59 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		*ft_range(int min, int max)
 
 	if (min >= max)
 		return ((void *)0);
-	head = (int *)malloc(sizeof(int) * (max - min));
+	head = (int *)malloc(sizeof(int) * ((long)max - (long)min));
 	if (!head)
 		return ((void *)0);
 	i = 0;

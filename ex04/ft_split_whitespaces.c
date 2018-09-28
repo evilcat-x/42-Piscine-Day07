@@ -6,19 +6,23 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 18:35:50 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 17:36:41 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 19:08:22 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
+
 int		ft_word_cout(char *str);
+int		ft_word_len(char *str);
+char	*ft_copy_string(char *str, int n);
 
 char	**ft_split_whitespaces(char *str)
 {
 	char	**head;
 	int		p;
 	int		i;
+	int		word_len;
 
 	i = 0;
 	p = 0;
@@ -29,12 +33,28 @@ char	**ft_split_whitespaces(char *str)
 	{
 		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
 			i++;
-		head[p++] = &str[i];
-		while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-			i++;
+		word_len = ft_word_len(&str[i]);
+		head[p] = ft_copy_string(&str[i], word_len);
+		i += word_len;
 	}
 	head[p] = 0;
 	return (head);
+}
+
+char	*ft_copy_string(char *str, int n)
+{
+	int		i;
+	char	*word;
+
+	i = 0;
+	word = (char *)malloc(sizeof(char) * (n + 1));
+	while (i < n)
+	{
+		word[i] = str[i];
+		i++;
+	}
+	word[i] = 0;
+	return (word);
 }
 
 int		ft_word_cout(char *str)
@@ -53,4 +73,14 @@ int		ft_word_cout(char *str)
 			i++;
 	}
 	return (ptr);
+}
+
+int		ft_word_len(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+		i++;
+	return (i);
 }

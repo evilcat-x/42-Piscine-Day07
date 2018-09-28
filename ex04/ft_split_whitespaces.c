@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 18:35:50 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 19:10:11 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 19:12:57 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	**ft_split_whitespaces(char *str)
 	{
 		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
 			i++;
+		if (!*str)
+			break ;
 		word_len = ft_word_len(&str[i]);
 		head[p++] = ft_copy_string(&str[i], word_len);
 		i += word_len;

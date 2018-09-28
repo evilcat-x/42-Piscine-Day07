@@ -6,54 +6,128 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 14:22:05 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 16:37:33 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 20:14:15 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_strlen(char *str);
-char	ft_convert_char(char c, char *from, char *to);
+int		ft_base_size(char *base);
+long	ft_atoi(char *str, char *base, int base_size);
+int		ft_in_base(char *str, char *base);
+int		ft_len(long nb, long base);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	char	*dst;
+	long	result;
+	long	divisor;
+	char	*str;
 	int		i;
+	int		base_size;
 
+	base_size = ft_base_size(base_to);
+	if (base_size <= 1 || !nbr)
+		return (0);
+	divisor = 1;
+	result = ft_atoi(nbr, base_from, ft_base_size(base_from));
+	str = (char *)malloc(sizeof(char) * (ft_len(result, base_size) + 1));
 	i = 0;
-	dst = (char *)malloc(sizeof(char) * (ft_strlen(nbr) + 1));
-	if (!dst)
-		return ((void *)0);
-	while (nbr[i])
+	if (result < 0)
+		str[i++] = '-';
+	result = result < 0 ? -result : result;
+	while (result > divisor * base_size)
+		divisor *= base_size;
+	while (divisor != 0)
 	{
-		dst[i] = ft_convert_char(nbr[i], base_from, base_to);
-		i++;
+		str[i++] = base_to[(result / divisor) % base_size];
+		divisor /= base_size;
 	}
-	dst[i] = 0;
-	return (dst);
+	str[i] = 0;
+	return (str);
 }
 
-char	ft_convert_char(char c, char *from, char *to)
+int		ft_len(long nb, long base)
 {
-	while (*from)
-	{
-		if (c == *from)
-			return (*to);
-		from++;
-		to++;
-	}
-	return (0);
-}
+	int		len;
+	long	divisor;
 
-int		ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (*str)
+	len = 1;
+	divisor = base;
+	if (nb < 0)
 	{
+		nb = -nb;
 		len++;
-		str++;
+	}
+	while (nb >= divisor)
+	{
+		divisor *= base;
+		len++;
 	}
 	return (len);
+}
+
+long	ft_atoi(char *str, char *base, int base_size)
+{
+	long	result;
+	long	prev_result;
+	int		sign;
+
+	sign = 1;
+	result = 0;
+	while (*str == '\t' || *str == '\n' || *str == '\v'
+		|| *str == '\f' || *str == '\r' || *str == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
+		sign = *str++ == '-' ? -1 : 1;
+	while (*str)
+	{
+		if (*str == '+' || *str == '-')
+			return (result);
+		if (ft_in_base(str, base) < 0)
+			return (0);
+		prev_result = result;
+		result = result * base_size + ft_in_base(str, base) * sign;
+		if (result / base_size != prev_result)
+			return (sign == 1 ? -1 : 0);
+		str++;
+	}
+	return (result);
+}
+
+int		ft_in_base(char *str, char *base)
+{
+	int	n;
+
+	n = 0;
+	while (*base)
+	{
+		if (*str == *base++)
+			return (n);
+		n++;
+	}
+	return (-1);
+}
+
+int		ft_base_size(char *base)
+{
+	int		base_size;
+	char	*head;
+
+	if (!base)
+		return (0);
+	base_size = 0;
+	while (*base)
+	{
+		head = base;
+		while (*++head)
+		{
+			if (*head == *base)
+				return (0);
+		}
+		if (*base == '+' || *base == '-')
+			return (0);
+		base_size++;
+		base++;
+	}
+	return (base_size);
 }

@@ -6,12 +6,11 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 18:35:50 by seli              #+#    #+#             */
-/*   Updated: 2018/09/27 19:08:22 by seli             ###   ########.fr       */
+/*   Updated: 2018/09/27 19:10:11 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 
 int		ft_word_cout(char *str);
 int		ft_word_len(char *str);
@@ -34,7 +33,7 @@ char	**ft_split_whitespaces(char *str)
 		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
 			i++;
 		word_len = ft_word_len(&str[i]);
-		head[p] = ft_copy_string(&str[i], word_len);
+		head[p++] = ft_copy_string(&str[i], word_len);
 		i += word_len;
 	}
 	head[p] = 0;
